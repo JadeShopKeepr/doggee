@@ -2,18 +2,23 @@
   background: #e4f1fe;
   border-radius: 5px;
   border: none;
+  outline: none;
   padding: 10px 10px;
   width: 100%;
+  color: #002c3e;
+  font-size: 14px;
 }
 
 .input::placeholder {
-  color: #002c3e;
+  caret-color: #002c3e;
 }
-
-.input_error {
-  background: rgba(241, 130, 141, 0.3);
+.input:hover {
+  filter: brightness(105%);
 }
-.input_helperText {
+.error {
+  background: rgba(241, 130, 141, 0.3) !important;
+}
+.helperText {
   color: #f1828d;
   font-weight: 300;
   font-size: 12px;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Input.css';
+import styles from './input.module.css';
 
 interface InputProps extends React.HTMLProps<HTMLInputElement> {
   isError?: boolean;
@@ -8,11 +8,10 @@ interface InputProps extends React.HTMLProps<HTMLInputElement> {
 }
 
 export const Input: React.FC<InputProps> = ({ isError = false, helperText, ...props }) => {
-  const className = isError ? 'input input_error' : 'input';
   return (
-    <div>
-      <input className={className} {...props} />
-      {isError && helperText && <div className='input_helperText'>{helperText}</div>}
-    </div>
+    <>
+      <input className={`${styles.input} ${isError ? styles.error : ''}`} {...props} />
+      {isError && helperText && <div className={styles.helperText}>{helperText}</div>}
+    </>
   );
 };

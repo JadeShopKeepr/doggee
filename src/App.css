@@ -3,6 +3,7 @@
 * {
   box-sizing: border-box;
   font-family: 'Raleway', sans-serif;
+  overflow: hidden;
 }
 
 body {
