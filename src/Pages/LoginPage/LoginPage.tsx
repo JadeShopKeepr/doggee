@@ -1,16 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@common/buttons';
 import { Input } from '@common/fields';
 
 import styles from './LoginPage.module.css';
 
+const navigate = useNavigate();
+
 const validateUsername = (value: string) => {
   if (!value) return 'Щось треба написати тут';
   return null;
 };
 const validatePassword = (value: string) => {
-  if (!value) return 'Щась не те з паролем';
+  if (!value) return 'Щось не те з паролем';
   return null;
 };
 
@@ -28,7 +31,7 @@ interface FormErrors {
   password: string | null;
 }
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const [formValues, setFormValues] = React.useState({ username: '', password: '' });
   const [formErrors, setFormErrors] = React.useState<FormErrors>({
     username: null,
@@ -75,10 +78,10 @@ const LoginPage = () => {
             <Button>Увійти</Button>
           </div>
         </div>
-        <div className={styles.signUp_link}>Немає аккаунту?</div>
+        <div onClick={() => navigate('/registration')} className={styles.signUp_link}>
+          Немає аккаунту?
+        </div>
       </div>
     </div>
   );
 };
-
-export default LoginPage;

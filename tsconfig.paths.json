@@ -5,7 +5,7 @@
     "paths": {
       "@common": ["./common"],
       "@common/*": ["./common/*"],
-      "@pages": ["./pages"]
+      "@Pages": ["./Pages"]
     }
   }
 }
