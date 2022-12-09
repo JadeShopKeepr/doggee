@@ -1,14 +1,16 @@
 import React from 'react';
 
-import { Button } from '../../common/buttons';
-import { Input } from '../../common/fields';
+import { Button } from '@common/buttons';
+import { Input } from '@common/fields';
+
+import styles from './LoginPage.module.css';
 
 const validateUsername = (value: string) => {
   if (!value) return 'Щось треба написати тут';
   return null;
 };
 const validatePassword = (value: string) => {
-  if (!value) return 'Щась не те з паролем, будьте уважні!';
+  if (!value) return 'Щась не те з паролем';
   return null;
 };
 
@@ -17,7 +19,7 @@ const loginFormValidateSchema = {
   password: validatePassword
 };
 
-const validateLoginForm = (name: 'username' | 'password', value: string) => {
+const validateLoginForm = (name: keyof typeof loginFormValidateSchema, value: string) => {
   return loginFormValidateSchema[name](value);
 };
 
@@ -26,7 +28,6 @@ interface FormErrors {
   password: string | null;
 }
 
-import styles from './LoginPage.module.css';
 const LoginPage = () => {
   const [formValues, setFormValues] = React.useState({ username: '', password: '' });
   const [formErrors, setFormErrors] = React.useState<FormErrors>({
@@ -42,32 +43,32 @@ const LoginPage = () => {
             <Input
               value={formValues.username}
               placeholder='Логін'
-              {...(!!formErrors.username && {
-                isError: !!formErrors.username,
-                helperText: formErrors.username
-              })}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const username = event.target.value;
                 setFormValues({ ...formValues, username: event.target.value });
                 const error = validateLoginForm('username', username);
                 setFormErrors({ ...formErrors, username: error });
               }}
+              {...(!!formErrors.username && {
+                isError: !!formErrors.username,
+                helperText: formErrors.username
+              })}
             />
           </div>
           <div className='form_inner_input_container'>
             <Input
               value={formValues.password}
               placeholder='Пароль'
-              {...(!!formErrors.password && {
-                isError: !!formErrors.password,
-                helperText: formErrors.password
-              })}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const password = event.target.value;
                 setFormValues({ ...formValues, password: event.target.value });
                 const error = validateLoginForm('password', password);
                 setFormErrors({ ...formErrors, password: error });
               }}
+              {...(!!formErrors.password && {
+                isError: !!formErrors.password,
+                helperText: formErrors.password
+              })}
             />
           </div>
           <div>
