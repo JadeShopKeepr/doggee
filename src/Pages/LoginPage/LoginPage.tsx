@@ -2,15 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@common/buttons';
-import { Input } from '@common/fields';
+import { Input, PasswordInput } from '@common/fields';
 
 import styles from './LoginPage.module.css';
 
-const navigate = useNavigate();
-
 const validateUsername = (value: string) => {
   if (!value) return 'Щось треба написати тут';
-  return null;
+  else null;
 };
 const validatePassword = (value: string) => {
   if (!value) return 'Щось не те з паролем';
@@ -26,17 +24,18 @@ const validateLoginForm = (name: keyof typeof loginFormValidateSchema, value: st
   return loginFormValidateSchema[name](value);
 };
 
-interface FormErrors {
-  username: string | null;
-  password: string | null;
+interface FormErrorsProps {
+  username: string | null | undefined;
+  password: string | null | undefined;
 }
 
 export const LoginPage = () => {
   const [formValues, setFormValues] = React.useState({ username: '', password: '' });
-  const [formErrors, setFormErrors] = React.useState<FormErrors>({
+  const [formErrors, setFormErrors] = React.useState<FormErrorsProps>({
     username: null,
     password: null
   });
+  const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <div className={styles.form_container}>
@@ -44,8 +43,8 @@ export const LoginPage = () => {
         <div className={styles.form_inner}>
           <div className={styles.input_container}>
             <Input
+              label='Логін'
               value={formValues.username}
-              placeholder='Логін'
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const username = event.target.value;
                 setFormValues({ ...formValues, username: event.target.value });
@@ -59,9 +58,9 @@ export const LoginPage = () => {
             />
           </div>
           <div className='form_inner_input_container'>
-            <Input
+            <PasswordInput
+              type='password'
               value={formValues.password}
-              placeholder='Пароль'
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const password = event.target.value;
                 setFormValues({ ...formValues, password: event.target.value });

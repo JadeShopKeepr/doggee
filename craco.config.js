@@ -10,5 +10,8 @@ module.exports = {
         tsConfigPath: './tsconfig.paths.json'
       }
     }
-  ]
+  ],
+  eslint: {
+    enable: false
+  }
 };

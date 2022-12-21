@@ -1,20 +1,54 @@
-.input {
-  background: #e4f1fe;
+.inputContainer {
+  position: relative;
+  display: flex;
   border-radius: 5px;
-  border: none;
-  outline: none;
-  padding: 10px 10px;
+  background-color: #e4f1fe;
   width: 100%;
+  padding: 20px 15px 9px;
+  height: 48px;
+  cursor: text;
+}
+.inputContainer:hover {
+  filter: brightness(102%);
+}
+.label {
+  position: absolute;
+  left: 15px;
+  top: 15px;
   color: #002c3e;
-  font-size: 14px;
+  font-size: 16px;
+  text-transform: capitalize;
+  background-color: #e4f1fe;
+
+  transition: transform 150ms ease-out, font-size 150ms ease-out;
 }
 
-.input::placeholder {
+input {
+  border: none;
+  width: 100%;
+  outline: none;
+  color: #002c3e;
+  font-size: 14px;
+  background-color: transparent;
+}
+
+input:active,
+input:focused {
   caret-color: #002c3e;
 }
-.input:hover {
-  filter: brightness(105%);
+
+.focused .label {
+  transform: translate(-30%, -80%);
+  font-size: 12px;
 }
+
+.passwordToggle_container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
 .error {
   background: rgba(241, 130, 141, 0.3) !important;
 }
@@ -25,4 +59,9 @@
   line-height: 14px;
   padding-left: 10px;
   padding-top: 3px;
+}
+
+svg {
+  width: 18px;
+  height: 18px;
 }
